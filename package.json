@@ -1,7 +1,7 @@
 {
-  "name": "chibot9002",
+  "name": "tophat-bot",
   "version": "1.0.0",
-  "description": "Chibot9002, she's higher over 9000",
+  "description": "A Discord bot for Deeds",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

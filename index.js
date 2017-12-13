@@ -154,4 +154,4 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     }
 }); */
 
-client.login('MzUyNTgxNjMzNDAxOTQ2MTEz.DIjPAg.jfKSWY2XEpG-R1qPTUvMY3qqsMM');
+client.login(botdata.loginKey);
