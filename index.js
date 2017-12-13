@@ -120,13 +120,14 @@ client.on('message', message => {
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     if ((typeof oldMember.voiceChannel == 'undefined' || oldMember.voiceChannel.name !== "The Ocean") && (typeof newMember.voiceChannel != 'undefined' && newMember.voiceChannel.name === "The Ocean")) {
+       let voiceChannel;
         if (!iCastReflect) {
-            const voiceChannel = newMember.voiceChannel;
+            voiceChannel = newMember.voiceChannel;
         } else {
             if (newMember.id === 150436488532721664){
-                const voiceChannel = oldMember.voiceChannel;
+                voiceChannel = oldMember.voiceChannel;
             } else {
-                const voiceChannel = newMember.voiceChannel;
+                voiceChannel = newMember.voiceChannel;
             }
         }
         if (!playingOceanMan) {
