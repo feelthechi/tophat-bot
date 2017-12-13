@@ -1,0 +1,17 @@
+{
+  "name": "chibot9002",
+  "version": "1.0.0",
+  "description": "Chibot9002, she's higher over 9000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "KRTACLYSM",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.1.0",
+    "jsonfile": "^3.0.1",
+    "opusscript": "0.0.3",
+    "ytdl-core": "^0.17.1"
+  }
+}
