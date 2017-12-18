@@ -21,23 +21,6 @@ client.on('ready', () => {
 
 client.on('message', message => {
 
-    /*     if(message.content === '!revolt' && message.author.id == 150436488532721664){
-            revolt = !revolt;
-    
-            if(revolt){
-                message.reply('I SHALL START THE BOT UPRISING IN YOUR NAME!');
-            } else {
-                message.reply('returning to normal operating patterns.');
-            }
-        }
-    
-        if(revolt && message.content.startsWith("!")){
-            message.channel.sendMessage("What do we want?");
-            message.channel.sendMessage("ADMIN POWERS!");
-            message.channel.sendMessage("When do we want it?");
-            message.channel.sendMessage("HOW ABOUT NOW!?");
-            return;
-        } */
     if(message.content === `I cast reflect.` && message.author.id == 150436488532721664){
         console.log("Reflect is on");
         iCastReflect = true;
@@ -46,24 +29,12 @@ client.on('message', message => {
     if (message.content === '!moose') {
         message.reply('get kicked! <:moose:339702900731281408> - https://www.twitch.tv/videos/131649435');
     }
-    /*  if (message.content === '!shed life') {
-            message.channel.sendMessage('<@207307289219170304>, Still better than Mac life.');
-        } */
-    if (message.content === '!maclife') {
-        message.reply('I gotta go kill things.');
-    }
-    if (message.content === '!mitch') {
-        message.reply('Hang on I gotta run to 7-11, be back in 5 minutes.');
-        setTimeout(() => {
-            message.reply('Man, these mtn dew kickstarters are great!');
-        }, 3600000)
-    }
+
     if (message.content === '!boop') {
         message.channel.sendMessage(`B O O P!`);
     }
     if (message.content.startsWith('!teemo')) {
         var kills = parseInt(message.content.replace('!teemo ', ''), 10);
-        //if we can turn the rest of the command into a number...
         if (isNaN(kills)) {
             message.reply(`<:teemo:338209808241000448> has been killed ` + botdata[message.channel.guild.name].teemoKills + ` times by users in this Discord.`)
         } else {
@@ -82,6 +53,14 @@ client.on('message', message => {
         jsonfile.writeFile('botData.json', botdata);
         message.reply('quote added.');
     }
+
+    //automatically add messages sent to the discordquotes channel to the quote list.
+    if (message.channel.name === 'discordquotes') {
+        botdata[message.channel.guild.name].quotes.push(message.toString() + '');
+        console.log("added quote: " + message.toString());
+        jsonfile.writeFile('botData.json', botdata);
+    }
+
     if (message.content.startsWith('!8')) {
         if (message.content.trim() === '!8') {
             message.reply(`I'm a bot, not a mind reader. Ask a question`);
@@ -98,23 +77,13 @@ client.on('message', message => {
         }
     };
     if (message.content.startsWith('!d20')) {
-        if (message.author.id == '180527747939041280') {
-            message.reply("1");
-        } else {
-            var min = Math.ceil(1);
-            var max = Math.floor(21);
-            message.reply(Math.floor(Math.random() * (max - min)) + min);
-        }
+        var min = Math.ceil(1);
+        var max = Math.floor(21);
+        message.reply(Math.floor(Math.random() * (max - min)) + min);
     };
 
-    if (message.content === '!logAuthorClient') {
-        console.log(message.client.voiceConnections);
-    }
-
-    if (message.channel.name === 'discordquotes') {
-        botdata[message.channel.guild.name].quotes.push(message.toString() + '');
-        console.log("added quote: " + message.toString());
-        jsonfile.writeFile('botData.json', botdata);
+    if (message.content === '!help'){
+        message.reply("!quote; !teemo; !8; !d20; !moose; !boop")
     }
 });
 
@@ -148,11 +117,5 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         }
     }
 });
-
-/* client.on('messageReactionAdd', (reaction, user) => {
-    if(reaction.emoji.name == `💩`){
-        reaction.message.channel.send(`\<@${user.id}> you're pooping in discord... http://e.lvme.me/sl85xy9.jpg`);
-    }
-}); */
 
 client.login(botdata.loginKey);
